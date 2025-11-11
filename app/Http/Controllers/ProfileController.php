@@ -56,4 +56,19 @@ class ProfileController extends Controller
 
         return response()->json(['message' => 'Profile updated successfully']);
     }
+
+    public function show(Request $request)
+    {
+        $user = $request->user();
+
+        return response()->json([
+            'first_name' => $user->first_name,
+            'last_name' => $user->last_name,
+            'email' => $user->email,
+            'profile_picture_url' => $user->profile_picture
+                ? asset('storage/' . $user->profile_picture)
+                : null,
+        ]);
+    }
+
 }
