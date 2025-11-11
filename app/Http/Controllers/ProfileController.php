@@ -67,7 +67,7 @@ class ProfileController extends Controller
             'email' => $user->email,
             'profile_picture_url' => $user->profile_picture
                 ? asset('storage/' . $user->profile_picture)
-                : null,
+                : asset('default-avatar.png'),
         ]);
     }
 

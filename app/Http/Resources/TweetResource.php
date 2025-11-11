@@ -16,7 +16,9 @@ class TweetResource extends JsonResource
                 'first_name' => $this->user->first_name,
                 'last_name' => $this->user->last_name,
                 'email' => $this->user->email,
-                'profile_picture' => $this->user->profile_picture
+                'profile_picture_url' => $this->user->profile_picture
+                ? asset('storage/' . $this->user->profile_picture)
+                : asset('default-avatar.png')
             ],
             'likes_count' => $this->whenCounted('likes'),
             'liked_by_me' => $this->isLikedBy($request->user()),
