@@ -38,8 +38,6 @@ class TweetController extends Controller
 
     public function update(UpdateTweetRequest $request, Tweet $tweet)
     {
-        $this->authorize('update', $tweet);
-
         $tweet->update($request->validated());
 
         $tweet->load('user')->loadCount('likes');
@@ -49,7 +47,6 @@ class TweetController extends Controller
 
     public function destroy(Tweet $tweet)
     {
-        $this->authorize('delete', $tweet);
         $tweet->delete();
 
         return response()->json(['message' => 'Deleted'], 200);
